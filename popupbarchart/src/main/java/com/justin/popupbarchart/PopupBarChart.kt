@@ -738,6 +738,8 @@ class PopupBarChart @JvmOverloads constructor(
                     val deltaA = splitRect.left
                     val deltaB = (splitRect.left + split)
                     val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
+                    canvas.save();
+                    canvas.rotate(180F, 540F, 50F);
                     drawText(
                         dayText,
                         (deltaA + deltaValue),
@@ -746,6 +748,7 @@ class PopupBarChart @JvmOverloads constructor(
                         )),
                         mDayTextPaint
                     )
+                    canvas.restore();
                 }
 
                 if (graphValue.showToolTip) {
