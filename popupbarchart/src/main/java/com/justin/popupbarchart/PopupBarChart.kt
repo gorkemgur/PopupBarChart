@@ -479,6 +479,15 @@ class PopupBarChart @JvmOverloads constructor(
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
+
+    var tempHeight: Int = 0
+        get() {
+            return field
+        }
+        set(value) {
+            field = value
+        }
+
     override fun onTouchEvent(event: MotionEvent?): Boolean {
         event?.let {
             when (it.action) {
@@ -488,7 +497,7 @@ class PopupBarChart @JvmOverloads constructor(
                         val graphRectF = RectF(graph.graphBarRect.left - context.dpToPx(10),
                             graph.graphBarRect.top - context.dpToPx(10),
                             graph.graphBarRect.right + context.dpToPx(10),
-                            graph.graphBarRect.bottom + context.dpToPx(10))
+                            graph.graphBarRect.bottom + context.dpToPx(0))
                         if (graphRectF.contains(it.x, it.y)) {
                             for (j in 0 until listGraphValues.size) {
                                 val gv = listGraphValues[j]
@@ -516,7 +525,7 @@ class PopupBarChart @JvmOverloads constructor(
 
     private fun calculateGraphValues(width: Int, height: Int) {
         split = width / totalBarCount
-        startingPoint = tooltipAnchorBottomPoint + context.dpToPx(10)
+        startingPoint = tooltipAnchorBottomPoint + context.dpToPx(tempHeight)
         barHeight = height.toFloat()/* - startingPoint*/
         val todayText = "TODAY"
         val todayRect = Rect()
@@ -532,7 +541,7 @@ class PopupBarChart @JvmOverloads constructor(
         for (i in 0..6) {
             val startX = (split * i + graphLeftPadding)
             val barX = (((startX + split) - startX) - barWidth) / 2
-            val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(30)
+            val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(10)
 
             val myDelta = context.dpToPx(7)
             val splitRect = SplitRect(startX)
@@ -668,7 +677,7 @@ class PopupBarChart @JvmOverloads constructor(
                         (deltaA + deltaValue),
                         (graphBarRect.bottom + context.dpToPx(25)),
                         mTodayTextPaint)
-                } else {
+                } else if (graphValue.isDayVisible) {
                     val dayText = "DAY ${graphValue.day}"
                     val dayRect = Rect()
                     mDayTextPaint.getTextBounds(dayText, 0, dayText.length, dayRect)

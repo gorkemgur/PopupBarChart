@@ -22,5 +22,6 @@ data class GraphValue(
     val id: Int = 1,
     val progress: Int = -1,
     val isToday: Boolean = false,
+    val isDayVisible: Boolean = false,
     var showToolTip: Boolean = false,
 )
