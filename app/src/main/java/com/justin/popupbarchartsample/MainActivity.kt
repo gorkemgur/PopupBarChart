@@ -17,7 +17,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         val widget = findViewById<PopupBarChart>(R.id.customBarchart).apply {
+            setBottom(true)
             setGraphValues(
                 arrayListOf(
                     GraphValue(
@@ -25,6 +27,7 @@ class MainActivity : AppCompatActivity() {
                         id = 1,
                         progress = 30,
                         isToday = false,
+                        isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
@@ -32,6 +35,7 @@ class MainActivity : AppCompatActivity() {
                         id = 2,
                         progress = 70,
                         isToday = false,
+                        isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
@@ -39,6 +43,7 @@ class MainActivity : AppCompatActivity() {
                         id = 3,
                         progress = 100,
                         isToday = false,
+                        isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
@@ -46,6 +51,7 @@ class MainActivity : AppCompatActivity() {
                         id = 4,
                         progress = 0,
                         isToday = false,
+                        isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
@@ -53,6 +59,7 @@ class MainActivity : AppCompatActivity() {
                         id = 5,
                         progress = 50,
                         isToday = false,
+                        isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
@@ -60,6 +67,7 @@ class MainActivity : AppCompatActivity() {
                         id = 6,
                         progress = 50,
                         isToday = false,
+                        isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
@@ -67,6 +75,7 @@ class MainActivity : AppCompatActivity() {
                         id = 7,
                         progress = 25,
                         isToday = false,
+                        isDayVisible = true,
                         showToolTip = false
                     ),
                 )
