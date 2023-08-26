@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
             setGraphValues(
                 arrayListOf(
                     GraphValue(
-                        day = 1,
+                        day = "DAY 1",
                         id = 1,
                         progress = 30,
                         isToday = false,
@@ -31,7 +31,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = 2,
+                        day = "DAY 1",
                         id = 2,
                         progress = 70,
                         isToday = false,
@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = 3,
+                        day = "DAY 1",
                         id = 3,
                         progress = 100,
                         isToday = false,
@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = 4,
+                        day = "DAY 1",
                         id = 4,
                         progress = 0,
                         isToday = false,
@@ -55,7 +55,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = 5,
+                        day = "DAY 1",
                         id = 5,
                         progress = 50,
                         isToday = false,
@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = 6,
+                        day = "DAY 1",
                         id = 6,
                         progress = 50,
                         isToday = false,
@@ -71,7 +71,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = 7,
+                        day = "DAY 1",
                         id = 7,
                         progress = 25,
                         isToday = false,
@@ -81,7 +81,6 @@ class MainActivity : AppCompatActivity() {
                 )
             )
         }
-
 
 
         findViewById<CheckBox>(R.id.cb_round_corner).setOnCheckedChangeListener { compoundButton, b ->

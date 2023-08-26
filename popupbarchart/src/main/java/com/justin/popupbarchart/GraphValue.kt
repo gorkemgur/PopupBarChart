@@ -18,7 +18,7 @@
 package com.justin.popupbarchart
 
 data class GraphValue(
-    val day: Int,
+    val day: String,
     val id: Int = 1,
     val progress: Int = -1,
     val isToday: Boolean = false,

@@ -72,7 +72,6 @@ class PopupBarChart @JvmOverloads constructor(
     private val barWidth = context.dpToPx(16)
     private val graphLeftAndRightPadding = context.dpToPx(20)
     private val graphLeftPadding = context.dpToPx(25) / 2
-    private val totalBarCount = 7
 
     private var split = 0
     private var startingPoint = 0f
@@ -507,8 +506,15 @@ class PopupBarChart @JvmOverloads constructor(
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
-
     var tempHeight: Int = 0
+        get() {
+            return field
+        }
+        set(value) {
+            field = value
+        }
+
+    var barCount: Int = 7
         get() {
             return field
         }
@@ -557,7 +563,7 @@ class PopupBarChart @JvmOverloads constructor(
 
 
     private fun calculateGraphValues(width: Int, height: Int) {
-        split = width / totalBarCount
+        split = width / barCount
         startingPoint = tooltipAnchorBottomPoint + context.dpToPx(tempHeight)
         barHeight = height.toFloat()/* - startingPoint*/
         val todayText = "TODAY"
@@ -573,7 +579,7 @@ class PopupBarChart @JvmOverloads constructor(
             Shader.TileMode.MIRROR
         )
         graphModelList.clear()
-        for (i in 0..6) {
+        for (i in 0 until listGraphValues.size) {
             val startX = (split * i + graphLeftPadding)
             val barX = (((startX + split) - startX) - barWidth) / 2
             val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(10)
@@ -731,7 +737,7 @@ class PopupBarChart @JvmOverloads constructor(
                         mTodayTextPaint
                     )
                 } else if (graphValue.isDayVisible) {
-                    val dayText = "DAY ${graphValue.day}"
+                    val dayText = graphValue.day
                     val dayRect = Rect()
                     mDayTextPaint.getTextBounds(dayText, 0, dayText.length, dayRect)
                     val textViewWidth = dayRect.width()
@@ -739,7 +745,7 @@ class PopupBarChart @JvmOverloads constructor(
                     val deltaB = (splitRect.left + split)
                     val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
                     canvas.save();
-                    canvas.rotate(180F, 540F, 50F);
+                    canvas.rotate(180F, 545F, 50F);
                     drawText(
                         dayText,
                         (deltaA + deltaValue),
