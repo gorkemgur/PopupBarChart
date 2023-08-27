@@ -522,12 +522,9 @@ class PopupBarChart @JvmOverloads constructor(
         }
         set(value) {
             field = value
-            mProgressAnimator.addUpdateListener { animation ->
-                mAnimatedFraction = animation.animatedValue as Float
-                mAnimatorUpdateListener?.onAnimationUpdate(animation)
-                requestLayout()
-            }
+            requestLayout()
         }
+
 
     var isDayTextBottom: Boolean = false
 
