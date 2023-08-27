@@ -24,11 +24,11 @@ import android.content.Context
 import android.graphics.*
 import android.text.TextPaint
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+
 
 data class GraphModel(val splitRect: SplitRect, val graphBarRect: GraphBarRect)
 
@@ -57,6 +57,8 @@ class PopupBarChart @JvmOverloads constructor(
     private val padding = context.dpToPx(7)
     private val paddingBetweenText = 4f
     private val completedText = "completed"
+
+    private var canvas: Canvas? = null
 
     private var percentageText = "00%"
     private var tooltipAnchorBottomPoint = 0f
@@ -520,6 +522,11 @@ class PopupBarChart @JvmOverloads constructor(
         }
         set(value) {
             field = value
+            mProgressAnimator.addUpdateListener { animation ->
+                mAnimatedFraction = animation.animatedValue as Float
+                mAnimatorUpdateListener?.onAnimationUpdate(animation)
+                requestLayout()
+            }
         }
 
     var isDayTextBottom: Boolean = false
@@ -776,6 +783,7 @@ class PopupBarChart @JvmOverloads constructor(
             save()
             drawGraph(this)
             restore()
+            this@PopupBarChart.canvas = this
         }
     }
 }
