@@ -544,7 +544,7 @@ class PopupBarChart @JvmOverloads constructor(
                             for (j in 0 until listGraphValues.size) {
                                 val gv = listGraphValues[j]
                                 if (j == i) {
-                                    gv.showToolTip = true
+                                    gv.showToolTip = false
                                     listGraphValues.removeAt(j)
                                     listGraphValues.add(j, gv)
                                 } else {
@@ -768,7 +768,7 @@ class PopupBarChart @JvmOverloads constructor(
                         graphBarRect.left,
                         graphBarRect.top
                     )
-                    drawTooltip(this)
+                    //drawTooltip(this)
                 }
             }
         }
