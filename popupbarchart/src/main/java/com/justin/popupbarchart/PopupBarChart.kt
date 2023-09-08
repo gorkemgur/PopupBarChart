@@ -223,6 +223,12 @@ class PopupBarChart @JvmOverloads constructor(
             requestLayout()
         }
 
+    var isMonthGraph: Boolean = false
+        set(value) {
+            field = value
+            requestLayout()
+        }
+
 
     /*
     * Used to Paint Day indications eg: Day 1, Day 2, Day 3
@@ -510,7 +516,11 @@ class PopupBarChart @JvmOverloads constructor(
         widgetHeight = MeasureSpec.getSize(heightMeasureSpec)
         calculateDefaultTooltipSize(percentageText = percentageText)
         val requiredWidth = widgetWidth - graphLeftAndRightPadding
-        calculateGraphValues(requiredWidth.toInt(), widgetHeight)
+        if (isMonthGraph) {
+            calculateGraphValuesForMonths(requiredWidth.toInt(), widgetHeight)
+        } else {
+            calculateGraphValues(requiredWidth.toInt(), widgetHeight)
+        }
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     }
 
@@ -571,8 +581,7 @@ class PopupBarChart @JvmOverloads constructor(
         return super.onTouchEvent(event)
     }
 
-
-    private fun calculateGraphValues(width: Int, height: Int) {
+    private fun calculateGraphValuesForMonths(width: Int, height: Int) {
         if (barCount == 30) {
             split = width / (barCount + 1)
         } else {
@@ -597,6 +606,46 @@ class PopupBarChart @JvmOverloads constructor(
             val startX = (split * i + graphLeftPadding)
             val barX = (((startX + split) - if (isDayTextBottom && barCount == 30) startX - 45 else startX - 20) - barWidth) / 2
             val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(10) + bottomSpace
+
+            val myDelta = context.dpToPx(7)
+            val splitRect = SplitRect(startX)
+            val graphBarRect = GraphBarRect((startX + barX + myDelta))
+            graphBarRect.apply {
+                top = startingPoint
+                right = (startX + barX + myDelta)
+                bottom = tempBarHeight
+            }
+            val graphModel = GraphModel(splitRect, graphBarRect)
+            graphModelList.add(graphModel)
+        }
+    }
+
+
+    private fun calculateGraphValues(width: Int, height: Int) {
+        if (barCount == 30) {
+            split = width / (barCount + 1)
+        } else {
+            split = width / barCount
+        }
+        startingPoint = tooltipAnchorBottomPoint + context.dpToPx(tempHeight)
+        barHeight = height.toFloat()/* - startingPoint*/
+        val todayText = "TODAY"
+        val todayRect = Rect()
+        mTodayTextPaint.getTextBounds(todayText, 0, todayText.length, todayRect)
+        mProgressPaint.shader = LinearGradient(
+            0f,
+            0f,
+            0f,
+            height.toFloat(),
+            colors,
+            null,
+            Shader.TileMode.MIRROR
+        )
+        graphModelList.clear()
+        for (i in 0 until listGraphValues.size) {
+            val startX = (split * i + graphLeftPadding)
+            val barX = (((startX + split) - startX) - barWidth) / 2
+            val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(10)
 
             val myDelta = context.dpToPx(7)
             val splitRect = SplitRect(startX)
@@ -794,5 +843,4 @@ class PopupBarChart @JvmOverloads constructor(
         }
     }
 }
-
 
