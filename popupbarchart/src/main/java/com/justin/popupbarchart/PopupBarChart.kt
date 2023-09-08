@@ -217,6 +217,12 @@ class PopupBarChart @JvmOverloads constructor(
             }
         }
 
+    var bottomSpace: Int = 0
+        set(value) {
+            field = value
+            requestLayout()
+        }
+
 
     /*
     * Used to Paint Day indications eg: Day 1, Day 2, Day 3
@@ -567,7 +573,11 @@ class PopupBarChart @JvmOverloads constructor(
 
 
     private fun calculateGraphValues(width: Int, height: Int) {
-        split = width / barCount
+        if (barCount == 30) {
+            split = width / (barCount + 1)
+        } else {
+            split = width / barCount
+        }
         startingPoint = tooltipAnchorBottomPoint + context.dpToPx(tempHeight)
         barHeight = height.toFloat()/* - startingPoint*/
         val todayText = "TODAY"
@@ -585,8 +595,8 @@ class PopupBarChart @JvmOverloads constructor(
         graphModelList.clear()
         for (i in 0 until listGraphValues.size) {
             val startX = (split * i + graphLeftPadding)
-            val barX = (((startX + split) - startX) - barWidth) / 2
-            val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(10)
+            val barX = (((startX + split) - if (isDayTextBottom && barCount == 30) startX - 45 else startX - 20) - barWidth) / 2
+            val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(10) + bottomSpace
 
             val myDelta = context.dpToPx(7)
             val splitRect = SplitRect(startX)
