@@ -84,256 +84,103 @@ class MainActivity : AppCompatActivity() {
         }
 
         val widget2 = findViewById<PopupBarChart>(R.id.customBarchart2).apply {
-            barCount = 30
-            isMonthGraph = true
+            barSize = 10
+            barCount = 12
             setBottom(true)
-            barSize = 8
-            barTextSize = 15
-
-            val a = arrayListOf(
-                GraphValue(
-                    day = "DAY 1",
-                    id = 1,
-                    progress = 0,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 2,
-                    progress = 70,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 3,
-                    progress = 100,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 4,
-                    progress = 0,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 5,
-                    progress = 50,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 6,
-                    progress = 50,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                ),
-                GraphValue(
-                    day = "DAY 1",
-                    id = 7,
-                    progress = 25,
-                    isToday = false,
-                    isDayVisible = true,
-                    showToolTip = false
-                )
-            )
             setGraphValues(
-                a.reversed()
+                arrayListOf(
+                    GraphValue(
+                        day = "DAY 1",
+                        id = 1,
+                        progress = 30,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),
+                    GraphValue(
+                        day = "DAY 1",
+                        id = 2,
+                        progress = 70,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),
+                    GraphValue(
+                        day = "DAY 1",
+                        id = 3,
+                        progress = 100,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),
+                    GraphValue(
+                        day = "DAY 1",
+                        id = 4,
+                        progress = 0,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),
+                    GraphValue(
+                        day = "DAY 1",
+                        id = 5,
+                        progress = 50,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),
+                    GraphValue(
+                        day = "DAY 1",
+                        id = 6,
+                        progress = 50,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),
+                    GraphValue(
+                        day = "DAY 1",
+                        id = 7,
+                        progress = 25,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),GraphValue(
+                        day = "DAY 1",
+                        id = 7,
+                        progress = 25,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),GraphValue(
+                        day = "DAY 1",
+                        id = 7,
+                        progress = 25,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),GraphValue(
+                        day = "DAY 1",
+                        id = 7,
+                        progress = 25,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),GraphValue(
+                        day = "DAY 1",
+                        id = 7,
+                        progress = 25,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    ),GraphValue(
+                        day = "DAY 1",
+                        id = 7,
+                        progress = 25,
+                        isToday = false,
+                        isDayVisible = true,
+                        showToolTip = false
+                    )
+                )
             )
         }
 

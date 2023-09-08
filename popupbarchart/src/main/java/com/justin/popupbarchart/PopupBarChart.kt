@@ -808,7 +808,7 @@ class PopupBarChart @JvmOverloads constructor(
                     val deltaB = (splitRect.left + split)
                     val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
                     canvas.save();
-                    canvas.rotate(180F, if (isMonthGraph) 536F else 545F, 50F)
+                    canvas.rotate(180F, if (isMonthGraph) 536F else 540F, 50F)
                     drawText(
                         dayText,
                         (deltaA + deltaValue),
