@@ -604,7 +604,8 @@ class PopupBarChart @JvmOverloads constructor(
         graphModelList.clear()
         for (i in 0 until listGraphValues.size) {
             val startX = (split * i + graphLeftPadding)
-            val barX = (((startX + split) - if (isDayTextBottom && barCount == 30) startX - 45 else startX - 20) - barWidth) / 2
+            val barX =
+                (((startX + split) - if (isDayTextBottom && barCount == 30) startX - 45 else startX - 20) - barWidth) / 2
             val tempBarHeight = barHeight - todayRect.height() - context.dpToPx(10) + bottomSpace
 
             val myDelta = context.dpToPx(7)
@@ -776,13 +777,30 @@ class PopupBarChart @JvmOverloads constructor(
                     val height = graphBarRect.bottom - graphBarRect.top
                     val tempProgressValue = graphValue.progress * mAnimatedFraction
                     val tempProgress = (((100 - tempProgressValue) / 100) * height)
-                    drawLine(
-                        graphBarRect.left,
-                        graphBarRect.top + tempProgress,
-                        graphBarRect.right,
-                        graphBarRect.bottom,
-                        mProgressPaint
-                    )
+
+                    if (isDayTextBottom) {
+                        val centerX = (graphBarRect.left + graphBarRect.right) / 2f
+                        val centerY = (graphBarRect.top + graphBarRect.bottom) / 2f
+
+                        canvas.save()
+                        canvas.scale(1f, 1f, centerX, centerY)
+                        drawLine(
+                            graphBarRect.left,
+                            graphBarRect.top + tempProgress,
+                            graphBarRect.right,
+                            graphBarRect.bottom,
+                            mProgressPaint
+                        )
+                        canvas.restore()
+                    } else {
+                        drawLine(
+                            graphBarRect.left,
+                            graphBarRect.top + tempProgress,
+                            graphBarRect.right,
+                            graphBarRect.bottom,
+                            mProgressPaint
+                        )
+                    }
                 }
 
                 if (graphValue.isToday) {

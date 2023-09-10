@@ -92,29 +92,29 @@ class MainActivity : AppCompatActivity() {
                     GraphValue(
                         day = "DAY 1",
                         id = 1,
-                        progress = 30,
+                        progress = 0,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "DAY 2",
                         id = 2,
-                        progress = 70,
+                        progress = 0,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "DAY 3",
                         id = 3,
-                        progress = 100,
+                        progress = 0,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "DAY 4",
                         id = 4,
                         progress = 0,
                         isToday = false,
@@ -122,60 +122,60 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "DAY 5",
                         id = 5,
-                        progress = 50,
+                        progress = 0,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "DAY 6",
                         id = 6,
-                        progress = 50,
+                        progress = 0,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "DAY 7",
                         id = 7,
                         progress = 25,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
-                    ),GraphValue(
-                        day = "DAY 1",
+                    ), GraphValue(
+                        day = "DAY 8",
                         id = 7,
                         progress = 25,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
-                    ),GraphValue(
-                        day = "DAY 1",
+                    ), GraphValue(
+                        day = "DAY 9",
                         id = 7,
                         progress = 25,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
-                    ),GraphValue(
-                        day = "DAY 1",
+                    ), GraphValue(
+                        day = "DAY 10",
                         id = 7,
-                        progress = 25,
+                        progress = 70,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
-                    ),GraphValue(
-                        day = "DAY 1",
+                    ), GraphValue(
+                        day = "DAY 11",
                         id = 7,
-                        progress = 25,
+                        progress = 60,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
-                    ),GraphValue(
-                        day = "DAY 1",
+                    ), GraphValue(
+                        day = "DAY 12",
                         id = 7,
-                        progress = 25,
+                        progress = 100,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
@@ -195,11 +195,14 @@ class MainActivity : AppCompatActivity() {
                 .setPreferenceName("secondaryColor")
                 .setPositiveButton("confirm",
                     ColorEnvelopeListener { envelope, fromUser ->
-                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        Log.d(
+                            "TAG_JUSTIN",
+                            "--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}"
+                        )
                         widget.secondaryColor = envelope.color
                     })
-                .setNegativeButton("Cancel") {
-                        dialogInterface, i -> dialogInterface.dismiss()
+                .setNegativeButton("Cancel") { dialogInterface, i ->
+                    dialogInterface.dismiss()
                 }
                 .attachAlphaSlideBar(true) // the default value is true.
                 .attachBrightnessSlideBar(true) // the default value is true.
@@ -215,11 +218,14 @@ class MainActivity : AppCompatActivity() {
                 .setPreferenceName("startColor")
                 .setPositiveButton("confirm",
                     ColorEnvelopeListener { envelope, fromUser ->
-                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        Log.d(
+                            "TAG_JUSTIN",
+                            "--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}"
+                        )
                         widget.startColor = envelope.color
                     })
-                .setNegativeButton("Cancel") {
-                        dialogInterface, i -> dialogInterface.dismiss()
+                .setNegativeButton("Cancel") { dialogInterface, i ->
+                    dialogInterface.dismiss()
                 }
                 .attachAlphaSlideBar(true) // the default value is true.
                 .attachBrightnessSlideBar(true) // the default value is true.
@@ -234,11 +240,14 @@ class MainActivity : AppCompatActivity() {
                 .setPreferenceName("endColor")
                 .setPositiveButton("confirm",
                     ColorEnvelopeListener { envelope, fromUser ->
-                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        Log.d(
+                            "TAG_JUSTIN",
+                            "--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}"
+                        )
                         widget.endColor = envelope.color
                     })
-                .setNegativeButton("Cancel") {
-                        dialogInterface, i -> dialogInterface.dismiss()
+                .setNegativeButton("Cancel") { dialogInterface, i ->
+                    dialogInterface.dismiss()
                 }
                 .attachAlphaSlideBar(true) // the default value is true.
                 .attachBrightnessSlideBar(true) // the default value is true.
@@ -246,7 +255,8 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
-        findViewById<SeekBar>(R.id.bar_size).setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+        findViewById<SeekBar>(R.id.bar_size).setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
 
             }
@@ -262,15 +272,15 @@ class MainActivity : AppCompatActivity() {
         })
 
         findViewById<AppCompatButton>(R.id.btn_rubik_italic).setOnClickListener {
-            widget.barTextFontFamily= R.font.rubik_italic
+            widget.barTextFontFamily = R.font.rubik_italic
         }
 
         findViewById<AppCompatButton>(R.id.btn_rubik_medium).setOnClickListener {
-            widget.barTextFontFamily= R.font.rubik_medium
+            widget.barTextFontFamily = R.font.rubik_medium
         }
 
         findViewById<AppCompatButton>(R.id.btn_hurricane_regular).setOnClickListener {
-            widget.barTextFontFamily= R.font.hurricane_regular
+            widget.barTextFontFamily = R.font.hurricane_regular
         }
 
         findViewById<AppCompatButton>(R.id.colorPickerDayText).setOnClickListener {
@@ -279,11 +289,14 @@ class MainActivity : AppCompatActivity() {
                 .setPreferenceName("dayTextColor")
                 .setPositiveButton("confirm",
                     ColorEnvelopeListener { envelope, fromUser ->
-                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        Log.d(
+                            "TAG_JUSTIN",
+                            "--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}"
+                        )
                         widget.barTextColor = envelope.color
                     })
-                .setNegativeButton("Cancel") {
-                        dialogInterface, i -> dialogInterface.dismiss()
+                .setNegativeButton("Cancel") { dialogInterface, i ->
+                    dialogInterface.dismiss()
                 }
                 .attachAlphaSlideBar(true) // the default value is true.
                 .attachBrightnessSlideBar(true) // the default value is true.
@@ -291,7 +304,8 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
 
-        findViewById<SeekBar>(R.id.day_text_size).setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+        findViewById<SeekBar>(R.id.day_text_size).setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
 
             }
@@ -313,11 +327,14 @@ class MainActivity : AppCompatActivity() {
                 .setPreferenceName("dayTooltipBgColor")
                 .setPositiveButton("confirm",
                     ColorEnvelopeListener { envelope, fromUser ->
-                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        Log.d(
+                            "TAG_JUSTIN",
+                            "--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}"
+                        )
                         widget.tooltipBg = envelope.color
                     })
-                .setNegativeButton("Cancel") {
-                        dialogInterface, i -> dialogInterface.dismiss()
+                .setNegativeButton("Cancel") { dialogInterface, i ->
+                    dialogInterface.dismiss()
                 }
                 .attachAlphaSlideBar(true) // the default value is true.
                 .attachBrightnessSlideBar(true) // the default value is true.
@@ -332,11 +349,14 @@ class MainActivity : AppCompatActivity() {
                 .setPreferenceName("dayTooltipTitleColor")
                 .setPositiveButton("confirm",
                     ColorEnvelopeListener { envelope, fromUser ->
-                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        Log.d(
+                            "TAG_JUSTIN",
+                            "--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}"
+                        )
                         widget.tooltipTitleTextColor = envelope.color
                     })
-                .setNegativeButton("Cancel") {
-                        dialogInterface, i -> dialogInterface.dismiss()
+                .setNegativeButton("Cancel") { dialogInterface, i ->
+                    dialogInterface.dismiss()
                 }
                 .attachAlphaSlideBar(true) // the default value is true.
                 .attachBrightnessSlideBar(true) // the default value is true.
@@ -350,11 +370,14 @@ class MainActivity : AppCompatActivity() {
                 .setPreferenceName("dayTooltipSubTitleColor")
                 .setPositiveButton("confirm",
                     ColorEnvelopeListener { envelope, fromUser ->
-                        Log.d("TAG_JUSTIN","--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}")
+                        Log.d(
+                            "TAG_JUSTIN",
+                            "--> ${envelope.color} || ${envelope.argb} || ${envelope.hexCode}"
+                        )
                         widget.tooltipSubTitleTextColor = envelope.color
                     })
-                .setNegativeButton("Cancel") {
-                        dialogInterface, i -> dialogInterface.dismiss()
+                .setNegativeButton("Cancel") { dialogInterface, i ->
+                    dialogInterface.dismiss()
                 }
                 .attachAlphaSlideBar(true) // the default value is true.
                 .attachBrightnessSlideBar(true) // the default value is true.
@@ -364,31 +387,32 @@ class MainActivity : AppCompatActivity() {
 
 
         findViewById<AppCompatButton>(R.id.btn_rubik_italic_tooltip_title).setOnClickListener {
-            widget.tooltipTitleTextFontFamily= R.font.rubik_italic
+            widget.tooltipTitleTextFontFamily = R.font.rubik_italic
         }
 
         findViewById<AppCompatButton>(R.id.btn_rubik_medium_tooltip_title).setOnClickListener {
-            widget.tooltipTitleTextFontFamily= R.font.rubik_medium
+            widget.tooltipTitleTextFontFamily = R.font.rubik_medium
         }
 
         findViewById<AppCompatButton>(R.id.btn_hurricane_regular_tooltip_title).setOnClickListener {
-            widget.tooltipTitleTextFontFamily= R.font.hurricane_regular
+            widget.tooltipTitleTextFontFamily = R.font.hurricane_regular
         }
 
 
         findViewById<AppCompatButton>(R.id.btn_rubik_italic_tooltip_sub_family).setOnClickListener {
-            widget.tooltipSubTitleTextFontFamily= R.font.rubik_italic
+            widget.tooltipSubTitleTextFontFamily = R.font.rubik_italic
         }
 
         findViewById<AppCompatButton>(R.id.btn_rubik_medium_tooltip_sub_family).setOnClickListener {
-            widget.tooltipSubTitleTextFontFamily= R.font.rubik_medium
+            widget.tooltipSubTitleTextFontFamily = R.font.rubik_medium
         }
 
         findViewById<AppCompatButton>(R.id.btn_hurricane_regular_tooltip_sub_family).setOnClickListener {
-            widget.tooltipSubTitleTextFontFamily= R.font.hurricane_regular
+            widget.tooltipSubTitleTextFontFamily = R.font.hurricane_regular
         }
 
-        findViewById<SeekBar>(R.id.tooltip_title_size).setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+        findViewById<SeekBar>(R.id.tooltip_title_size).setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
 
             }
@@ -403,7 +427,8 @@ class MainActivity : AppCompatActivity() {
 
         })
 
-        findViewById<SeekBar>(R.id.tooltip_sub_title_size).setOnSeekBarChangeListener(object :SeekBar.OnSeekBarChangeListener{
+        findViewById<SeekBar>(R.id.tooltip_sub_title_size).setOnSeekBarChangeListener(object :
+            SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
 
             }
