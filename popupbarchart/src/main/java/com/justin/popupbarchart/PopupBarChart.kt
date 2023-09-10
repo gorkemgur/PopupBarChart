@@ -753,101 +753,118 @@ class PopupBarChart @JvmOverloads constructor(
         }
     }
 
-    private fun drawGraph(canvas: Canvas) {
-        canvas.apply {
-            for (i in 0 until graphModelList.size) {
-                val graphModel = graphModelList[i]
-                val graphBarRect = graphModel.graphBarRect
-                drawLine(
-                    graphBarRect.left,
-                    graphBarRect.top,
-                    graphBarRect.right,
-                    graphBarRect.bottom,
-                    mProgressBGPaint
-                )
-            }
+    private fun drawBar(canvas: Canvas) {
 
-            for (i in 0 until listGraphValues.size) {
-                val graphValue = listGraphValues[i]
+        if (isDayTextBottom) {
+            val graphCount = listGraphValues.size
+            for (i in 0 until graphCount) {
                 val graphModel = graphModelList[i]
                 val graphBarRect = graphModel.graphBarRect
-                val splitRect = graphModel.splitRect
+                val graphValue = listGraphValues[graphCount - 1 - i] // Verileri ters sırayla alın
 
                 if (graphValue.progress > 0) {
                     val height = graphBarRect.bottom - graphBarRect.top
                     val tempProgressValue = graphValue.progress * mAnimatedFraction
                     val tempProgress = (((100 - tempProgressValue) / 100) * height)
 
-                    if (isDayTextBottom) {
-                        val centerX = (graphBarRect.left + graphBarRect.right) / 2f
-                        val centerY = (graphBarRect.top + graphBarRect.bottom) / 2f
-
-                        canvas.save()
-                        canvas.scale(1f, 1f, centerX, centerY)
-                        drawLine(
-                            graphBarRect.left,
-                            graphBarRect.top + tempProgress,
-                            graphBarRect.right,
-                            graphBarRect.bottom,
-                            mProgressPaint
-                        )
-                        canvas.restore()
-                    } else {
-                        drawLine(
-                            graphBarRect.left,
-                            graphBarRect.top + tempProgress,
-                            graphBarRect.right,
-                            graphBarRect.bottom,
-                            mProgressPaint
-                        )
-                    }
-                }
-
-                if (graphValue.isToday) {
-                    val todayText = "TODAY"
-                    val todayRect = Rect()
-                    mTodayTextPaint.getTextBounds(todayText, 0, todayText.length, todayRect)
-                    val textViewWidth = todayRect.width()
-                    val deltaA = splitRect.left
-                    val deltaB = (splitRect.left + split)
-                    val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
-                    drawText(
-                        todayText,
-                        (deltaA + deltaValue),
-                        (graphBarRect.bottom + context.dpToPx(25)),
-                        mTodayTextPaint
-                    )
-                } else if (graphValue.isDayVisible) {
-                    val dayText = graphValue.day
-                    val dayRect = Rect()
-                    mDayTextPaint.getTextBounds(dayText, 0, dayText.length, dayRect)
-                    val textViewWidth = dayRect.width()
-                    val deltaA = splitRect.left
-                    val deltaB = (splitRect.left + split)
-                    val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
-                    canvas.save();
-                    canvas.rotate(180F, if (isMonthGraph) 536F else 540F, 50F)
-                    drawText(
-                        dayText,
-                        (deltaA + deltaValue),
-                        (if (isDayTextBottom) (graphBarRect.top - 80) else graphBarRect.bottom + context.dpToPx(
-                            25
-                        )),
-                        mDayTextPaint
-                    )
-                    canvas.restore();
-                }
-
-                if (graphValue.showToolTip) {
-                    percentageText = "${graphValue.progress}%"
-                    calculateTooltipValuesV2(
-                        percentageText,
+                    // Tersine çevrilen sıra ile grafik çubuklarını çizin
+                    canvas.drawLine(
                         graphBarRect.left,
-                        graphBarRect.top
+                        graphBarRect.top + tempProgress,
+                        graphBarRect.right,
+                        graphBarRect.bottom,
+                        mProgressPaint
                     )
-                    //drawTooltip(this)
                 }
             }
+
+        } else {
+            for (i in 0 until listGraphValues.size) {
+                val graphModel = graphModelList[i]
+                val graphBarRect = graphModel.graphBarRect
+                val graphValue = listGraphValues[i]
+
+                if (graphValue.progress > 0) {
+                    val height = graphBarRect.bottom - graphBarRect.top
+                    val tempProgressValue = graphValue.progress * mAnimatedFraction
+                    val tempProgress = (((100 - tempProgressValue) / 100) * height)
+
+                    canvas.drawLine(
+                        graphBarRect.left,
+                        graphBarRect.top + tempProgress,
+                        graphBarRect.right,
+                        graphBarRect.bottom,
+                        mProgressPaint
+                    )
+                }
+            }
+        }
+
+
+    }
+
+    private fun drawDays(canvas: Canvas) {
+        for(i in 0 until listGraphValues.size) {
+            val graphValue = listGraphValues[i]
+            val graphModel = graphModelList[i]
+            val graphBarRect = graphModel.graphBarRect
+            val splitRect = graphModel.splitRect
+            canvas.drawLine(
+                graphBarRect.left,
+                graphBarRect.top,
+                graphBarRect.right,
+                graphBarRect.bottom,
+                mProgressBGPaint
+            )
+
+            if (graphValue.isToday) {
+                val todayText = "TODAY"
+                val todayRect = Rect()
+                mTodayTextPaint.getTextBounds(todayText, 0, todayText.length, todayRect)
+                val textViewWidth = todayRect.width()
+                val deltaA = splitRect.left
+                val deltaB = (splitRect.left + split)
+                val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
+                canvas.drawText(
+                    todayText,
+                    (deltaA + deltaValue),
+                    (graphBarRect.bottom + context.dpToPx(25)),
+                    mTodayTextPaint
+                )
+            } else if (graphValue.isDayVisible) {
+                val dayText = graphValue.day
+                val dayRect = Rect()
+                mDayTextPaint.getTextBounds(dayText, 0, dayText.length, dayRect)
+                val textViewWidth = dayRect.width()
+                val deltaA = splitRect.left
+                val deltaB = (splitRect.left + split)
+                val deltaValue = ((deltaB - deltaA) - textViewWidth) / 2
+                canvas.drawText(
+                    dayText,
+                    (deltaA + deltaValue),
+                    (if (isDayTextBottom) (graphBarRect.top - 80) else graphBarRect.bottom + context.dpToPx(
+                        25
+                    )),
+                    mDayTextPaint
+                )
+            }
+
+            if (graphValue.showToolTip) {
+                percentageText = "${graphValue.progress}%"
+                calculateTooltipValuesV2(
+                    percentageText,
+                    graphBarRect.left,
+                    graphBarRect.top
+                )
+                //drawTooltip(this)
+            }
+        }
+    }
+
+    private fun drawGraph(canvas: Canvas) {
+        canvas.apply {
+            drawBar(canvas)
+            drawDays(canvas)
         }
     }
 

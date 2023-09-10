@@ -19,20 +19,21 @@ class MainActivity : AppCompatActivity() {
 
         val widget = findViewById<PopupBarChart>(R.id.customBarchart).apply {
             barSize = 10
-            barCount = 7
+            barCount = 12
+            isMonthGraph = false
             setBottom(false)
             setGraphValues(
                 arrayListOf(
                     GraphValue(
-                        day = "DAY 1",
+                        day = "DAY 14444",
                         id = 1,
-                        progress = 30,
+                        progress = 0,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "",
                         id = 2,
                         progress = 70,
                         isToday = false,
@@ -40,7 +41,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "",
                         id = 3,
                         progress = 100,
                         isToday = false,
@@ -48,7 +49,7 @@ class MainActivity : AppCompatActivity() {
                         showToolTip = false
                     ),
                     GraphValue(
-                        day = "DAY 1",
+                        day = "",
                         id = 4,
                         progress = 0,
                         isToday = false,
@@ -87,12 +88,13 @@ class MainActivity : AppCompatActivity() {
             barSize = 10
             barCount = 12
             setBottom(true)
+            isMonthGraph = false
             setGraphValues(
                 arrayListOf(
                     GraphValue(
-                        day = "DAY 1",
+                        day = "DAY 1134141",
                         id = 1,
-                        progress = 0,
+                        progress = 10,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
@@ -100,7 +102,7 @@ class MainActivity : AppCompatActivity() {
                     GraphValue(
                         day = "DAY 2",
                         id = 2,
-                        progress = 0,
+                        progress = 30,
                         isToday = false,
                         isDayVisible = true,
                         showToolTip = false
